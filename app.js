@@ -7,8 +7,9 @@ const cors = require('cors');
 
 //Routes
 var usersRouter = require('./routes/users');
-var productsRouter = require('./routes/products')
-
+var productsRouter = require('./routes/products');
+var cartRouter = require('./routes/cart');
+var ordersRouter = require('./routes/orders');
 
 var app = express();
 
@@ -19,8 +20,10 @@ app.use(cookieParser());
 app.use(cors());
 
 //URLs
-app.use('/users', usersRouter)
-
+app.use('/users', usersRouter);
+app.use('/product', productsRouter);
+app.use('/cart', cartRouter);
+app.use('/orders', ordersRouter);
 
 
 app.use(function(req, res, next) {
