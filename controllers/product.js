@@ -47,9 +47,27 @@ const consultProduct = (req, res) =>{
 
 const deleteProduct = (req, res) =>{}
 
+const consultProductDetails = (req, res) => {
+    productDao.productDetails(req.params.idProduct,data => {
+        if (data != null) {
+            res.send({
+                status: true,
+                message: 'Datos de producto obtenidos',
+                data: data
+            })
+        }else{
+            res.send({
+                status: false,
+                message: 'No se pudo ontener los datos'
+            })
+        }
+    })
+}
+
 module.exports = {
     addProduct,
     updateProduct,
     consultProduct,
-    deleteProduct
+    deleteProduct,
+    consultProductDetails
 }

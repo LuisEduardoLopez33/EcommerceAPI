@@ -7,8 +7,9 @@ router.get('/', function (req, res){
 })
 router.post('/add', product.addProduct);
 router.post('/update', product.updateProduct);
-router.get('/consult', product.consultProduct)
-router.post('/delete', product.deleteProduct)
+router.get('/consult', product.consultProduct);
+router.post('/delete', product.deleteProduct);
+router.get('/getProduct/:idProduct', product.consultProductDetails);
 
 
 module.exports = router;
