@@ -18,7 +18,8 @@ module.exports = {
 
     /*QUERY PARA OBTENER LOS DATOS DEL PRODUCTO EN LA VISTA DE DETALLES DEL PRODUCTO*/
     productDetails: (id, callback) => {
-      let sql = 'SELECT * FROM Product WHERE id= ? '
+      let sql = 'SELECT product.id, product.model, brand.name AS brand, product.category_id category, product.description, product.price, product.stock, product.size, product.color FROM product\n' +
+          ' JOIN brand ON product.id =? and product.brand_id = brand.id'
       database.query(sql, id, (err, data) => {
           if (err) throw err
           if (data != null){
@@ -27,6 +28,18 @@ module.exports = {
               callback(null)
           }
       })
+    },
+
+    productImagen: (id, callback) => {
+        let sql = 'select * from product_image where product_id = ? '
+        database.query(sql, id, (err, data) => {
+            if (err) throw err
+            if (data != null){
+                callback(data[0])
+            }else{
+                callback(null)
+            }
+        })
     },
 
     /*RESEÑAS DE PRODUCTO*/

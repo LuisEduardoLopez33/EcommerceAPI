@@ -52,7 +52,21 @@ const addProduct = (req, res) =>{
         if (data != null) {
             res.send({
                 status: true,
-                message: 'Datos de producto obtenidos',
+                data: data
+            })
+        }else{
+            res.send({
+                status: false,
+                message: 'No se pudo ontener los datos'
+            })
+        }
+    })}
+
+const consultProductImg = (req, res) => {
+    productDao.productImagen(req.params.idProduct,data => {
+        if (data != null) {
+            res.send({
+                status: true,
                 data: data
             })
         }else{
@@ -85,5 +99,6 @@ const addProduct = (req, res) =>{
         consultProduct,
         deleteProduct,
         consultProductDetails,
-        getProducts
+        getProducts,
+        consultProductImg
     }
