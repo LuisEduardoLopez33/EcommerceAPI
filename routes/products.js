@@ -10,6 +10,7 @@ router.post('/update', product.updateProduct);
 router.get('/consult', product.consultProduct);
 router.post('/delete', product.deleteProduct);
 router.get('/getProduct/:idProduct', product.consultProductDetails);
+router.get('/getProducts', product.getProducts);
 
 
 module.exports = router;

@@ -26,9 +26,9 @@ const addProduct = (req, res) =>{
     })
 }
 
-const updateProduct = (req, res) =>{}
+    const updateProduct = (req, res) =>{}
 
-const consultProduct = (req, res) =>{
+    const consultProduct = (req, res) =>{
 
     productDao.consultProduct((data) =>{
         if (data){
@@ -45,9 +45,9 @@ const consultProduct = (req, res) =>{
     })
 }
 
-const deleteProduct = (req, res) =>{}
+    const deleteProduct = (req, res) =>{}
 
-const consultProductDetails = (req, res) => {
+    const consultProductDetails = (req, res) => {
     productDao.productDetails(req.params.idProduct,data => {
         if (data != null) {
             res.send({
@@ -61,13 +61,29 @@ const consultProductDetails = (req, res) => {
                 message: 'No se pudo ontener los datos'
             })
         }
-    })
-}
+    })}
 
-module.exports = {
-    addProduct,
-    updateProduct,
-    consultProduct,
-    deleteProduct,
-    consultProductDetails
-}
+    const getProducts = (req, res) => {
+        productDao.getAllProducts((data) => {
+            if (data != null) {
+                res.send({
+                    status: true,
+                    data: data
+                })
+            } else {
+                res.send({
+                    status: false,
+                    message: 'Catálogo vacío'
+                })
+            }
+        })
+    }
+
+    module.exports = {
+        addProduct,
+        updateProduct,
+        consultProduct,
+        deleteProduct,
+        consultProductDetails,
+        getProducts
+    }

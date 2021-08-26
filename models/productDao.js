@@ -5,7 +5,15 @@ module.exports = {
 
     /*QUERY PARA OBTENER LOS PRODUCTOS EN LA VISTA PRINCIPAL DE PRODUCTOS*/
     getAllProducts: (callback) => {
-      let sql = 'SELECT Product.id, Product.name, Product.price FROM Product';
+      let sql = 'SELECT Product.id, Product.name, Product.price FROM Product'
+      database.query(sql, (err, data) => {
+          if (err) throw err
+          if (data != null){
+              callback(data)
+          }else{
+              callback(null)
+          }
+      })
     },
 
     /*QUERY PARA OBTENER LOS DATOS DEL PRODUCTO EN LA VISTA DE DETALLES DEL PRODUCTO*/
@@ -24,7 +32,7 @@ module.exports = {
     /*RESEÑAS DE PRODUCTO*/
     productReview: (id, callback) => {
       let sql = 'SELECT * FROM Product_Review WHERE Product_Review.id =? '
-        database.query(sql,)
+        database.query(sql, )
     },
 
     /*INSERTAR UN NUEVO PRODUCTO*/
@@ -63,6 +71,5 @@ module.exports = {
     },*/
 
     updateProduct: () =>{},
-
     deleteProduct: () => {}
 }
