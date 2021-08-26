@@ -11,6 +11,8 @@ var productsRouter = require('./routes/products');
 var cartRouter = require('./routes/cart');
 var ordersRouter = require('./routes/orders');
 var indexRouter = require('./routes/index');
+var categoryRouter = require('./routes/category');
+
 var app = express();
 
 // view engine setup
@@ -30,7 +32,7 @@ app.use('/users', usersRouter);
 app.use('/product', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/orders', ordersRouter);
-
+app.use('/category', categoryRouter);
 
 app.use(function(req, res, next) {
     next(createError(404));
