@@ -1,6 +1,7 @@
 const userDAO = require('../models/usersDao');
 const bcrypt = require('bcrypt');
 const token = require('../models/createToken');
+const {compareSync} = require("bcrypt");
 
 const validateUser = (req, res) =>{
     userDAO.searchUser(req.param.nameUser, (data) =>{
@@ -23,9 +24,11 @@ const validateUser = (req, res) =>{
 const singUp = (req, res) =>{
     const user = {
         name: req.body.name,
-        lastname: req.body.lastname,
-        user: req.body.user,
-        password: bcrypt.hashSync(req.body.password, 10)
+        last_name: req.body.lastname,
+        password: bcrypt.hashSync(req.body.password, 10),
+        phone: req.body.phone,
+        mail: req.body.mail,
+        date_of_bd: req.body.date_of_bd
     }
 
     userDAO.insertUser(user, (data) =>{
@@ -43,14 +46,14 @@ const singUp = (req, res) =>{
 }
 
 const logIn = (req, res) =>{
-    let userName = req.body.username
-    let password = req.body.password
-
-    userDAO.searchUser(userName, (data) =>{
+    let mail = req.body.mail
+    userDAO.searchUser(mail, (data) =>{
+        let password = bcrypt.compareSync(req.body.password, data.password, 10)
         if (data){
             if (password){
                 res.send({
-                    status: true
+                    status: true,
+                    message: 'contraseña Correcta'
                 })
             }else {
                 res.send({
