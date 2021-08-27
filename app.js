@@ -12,6 +12,8 @@ var cartRouter = require('./routes/cart');
 var ordersRouter = require('./routes/orders');
 var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
+var brandRouter = require('./routes/brand');
+var addressRouter = require('./routes/address');
 
 var app = express();
 
@@ -33,6 +35,8 @@ app.use('/product', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/orders', ordersRouter);
 app.use('/category', categoryRouter);
+app.use('/brand', brandRouter);
+app.use('/address', addressRouter);
 
 app.use(function(req, res, next) {
     next(createError(404));

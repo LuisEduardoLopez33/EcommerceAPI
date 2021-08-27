@@ -11,7 +11,7 @@ router.get('/',(req, res) => {
 
 router.get('/getCategories', category.getAllCategories);
 
-router.get('getCategory/:idCategory', category.consultCategories);
+router.get('/getCategory/:idCategory', category.consultCategories);
 
 //
 router.post('/addCategory', category.insertCategory);
