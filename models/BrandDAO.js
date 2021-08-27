@@ -30,7 +30,28 @@ module.exports = {
         })
     },
 
-    addBrand: (callback) => {},
-    updateBrand:(callback) => {},
-    deleteBrand: (callback) => {}
+    addBrand: (brand, callback) => {
+        let sql = 'INSERT INTO Brand SET ?';
+        database.query(sql, brand, (err, data)=>{
+            if(err) throw err;
+            return callback(data);
+        })
+    },
+
+    
+    updateBrand:(brand, callback) => {
+        let sql = 'UPDATE brand SET name = ? WHERE id = ?';
+        database.query(sql, [brand.name, brand.id], (err, data)=>{
+            if(err) throw err;
+            return callback(data);
+        })
+    },
+
+    deleteBrand: (id, callback) => {
+        let sql = 'DELETE FROM brand WHERE id = ?';
+        database.query(sql, id, (err, data)=>{
+            if(err) throw err;
+            return callback(data);
+        })
+    }
 }

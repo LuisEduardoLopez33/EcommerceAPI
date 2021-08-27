@@ -10,8 +10,8 @@ router.get('/getBrands', brand.getAllBrands);
 router.get('/getBrands/:id', brand.consultBrandById);
 
 router.post('/addBrand', brand.insertBrand);
-router.put('/updateBrand', brand.updateBrand);
-router.delete('/deleteBrand', brand.deleteBrand);
+router.put('/updateBrand/:id', brand.updateBrand);
+router.delete('/deleteBrand/:id', brand.deleteBrand);
 
 
 module.exports = router;
