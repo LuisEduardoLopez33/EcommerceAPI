@@ -6,7 +6,7 @@ module.exports = {
 
     /*QUERY PARA OBTENER LOS PRODUCTOS EN LA VISTA PRINCIPAL DE PRODUCTOS*/
     getAllProducts: (callback) => {
-      let sql = 'SELECT Product.id, Product.name, Product.price FROM Product'
+      let sql = 'SELECT Product.id, Product.name, Product.price, brand.name AS brand FROM Product join brand where brand.id = product.brand_id'
       database.query(sql, (err, data) => {
           if (err) throw err
           if (data != null){
@@ -19,7 +19,7 @@ module.exports = {
 
     /*QUERY PARA OBTENER LOS DATOS DEL PRODUCTO EN LA VISTA DE DETALLES DEL PRODUCTO*/
     productDetails: (id, callback) => {
-      let sql = 'SELECT product.id, product.model, brand.name AS brand, product.category_id category, product.description, product.price, product.stock, product.size, product.color FROM product\n' +
+      let sql = 'SELECT product.id,product.name, product.model, brand.name AS brand, product.category_id category, product.description, product.price, product.stock, product.size, product.color FROM product\n' +
           ' JOIN brand ON product.id =? and product.brand_id = brand.id'
       database.query(sql, id, (err, data) => {
           if (err) throw err
@@ -49,6 +49,20 @@ module.exports = {
     },
 
     productsAllImages: (callback) =>{
+        let sql = 'select * from product_image'
+        database.query(sql, (err, data) => {
+            if (err) throw err
+            if (data != null){
+                data.map(img=>{
+                    fs.writeFileSync(path.join(__dirname, '../dbimages/' + img.product_id + '-ecommerce.png'), img.data)
+                });
+                const imgdir = fs.readdirSync(path.join(__dirname,'../dbimages/'))
+                data = imgdir
+                callback(data)
+            }else{
+                callback(null)
+            }
+        })
 
 
     },

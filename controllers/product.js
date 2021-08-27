@@ -63,11 +63,11 @@ const addProduct = (req, res) =>{
     })}
 
 const consultProductImg = (req, res) => {
-    productDao.productImagen(req.params.idProduct,data => {
+    productDao.productsAllImages(data => {
         if (data != null) {
             res.send({
                 status: true,
-                data: data
+                message: 'se cargaron las imagenes'
             })
         }else{
             res.send({

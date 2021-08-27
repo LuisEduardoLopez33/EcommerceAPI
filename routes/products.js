@@ -11,7 +11,7 @@ router.get('/consult', product.consultProduct);
 router.post('/delete', product.deleteProduct);
 router.get('/getProduct/:idProduct', product.consultProductDetails);
 router.get('/getProducts', product.getProducts);
-router.get('/getImg/:idProduct', product.consultProductImg);
+router.get('/getImg', product.consultProductImg);
 
 
 module.exports = router;
