@@ -2,9 +2,9 @@ const database = require('../configMysql')
 
 module.exports = {
 
-    searchUser: (user, callback) =>{
-        let sql = 'SELECT * FROM user WHERE name=?';
-        database.query(sql,user, (err, data) => {
+    searchUser: (mail, callback) =>{
+        let sql = 'SELECT * FROM customer WHERE mail=?';
+        database.query(sql,mail, (err, data) => {
             if (err) throw err
             if (data.length > 0){
                 callback(data[0]);
@@ -15,7 +15,7 @@ module.exports = {
     },
 
     insertUser: (user, okCallback, failCallback) =>{
-        let sql = 'INSERT INTO user SET ?';
+        let sql = 'INSERT INTO customer SET ?';
 
         database.query(sql, user, (err, data) =>{
             if (err){
