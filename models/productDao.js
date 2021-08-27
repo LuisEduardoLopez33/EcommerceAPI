@@ -1,5 +1,6 @@
 const database = require('../configMysql');
-
+const fs = require('fs')
+const path = require('path')
 
 module.exports = {
 
@@ -35,11 +36,21 @@ module.exports = {
         database.query(sql, id, (err, data) => {
             if (err) throw err
             if (data != null){
-                callback(data[0])
+                data.map(img=>{
+                    fs.writeFileSync(path.join(__dirname, '../dbimages/' + img.id + '-ecommerce.png'), img.data)
+                });
+                const imgdir = fs.readdirSync(path.join(__dirname,'../dbimages/'))
+                data = imgdir
+                callback(data[id-1])
             }else{
                 callback(null)
             }
         })
+    },
+
+    productsAllImages: (callback) =>{
+
+
     },
 
     /*RESEÑAS DE PRODUCTO*/
