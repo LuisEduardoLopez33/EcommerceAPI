@@ -30,7 +30,7 @@ module.exports = {
 
         let sql = 'SELECT * FROM Category WHERE Category.id = ?';
 
-        database.query(sql,id,(err, data)=>{
+        database.query(sql, id, (err, data)=>{
 
             if(err) throw err;
 

@@ -19,7 +19,7 @@ const getAllBrands = (req, res) => {
 }
 
 const consultBrandById = (req, res) => {
-    brandDAO.getBrandById(req.params.id, data =>{
+    brandDAO.getBrandById(req.params.id, (data) =>{
         if(data != null) {
             res.send({
                 status: true,

@@ -18,7 +18,7 @@ const getAllAddresses = (req, res) => {
 }
 
 const consultAddressPerCustomer = (req, res) => {
-    addressDAO.getAddressPerCustomerById((data)=>{
+    addressDAO.getAddressPerCustomerById(req.params.id, (data)=>{
         if(data != null) {
             res.send({
                 status: true,

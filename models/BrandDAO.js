@@ -17,7 +17,7 @@ module.exports = {
     },
 
 
-    getBrandById: (callback) => {
+    getBrandById: (id, callback) => {
         let sql = 'SELECT * FROM Brand WHERE Brand.id = ?';
         database.query(sql, id, (err, data) => {
             if(err) throw err;
