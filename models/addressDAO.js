@@ -41,7 +41,23 @@ module.exports = {
         })
     },
 
-    updateAddress:(callback) => {},
-    deletAddress:(callback) => {}
+    updateAddress:(address, callback) => {
+        let sql = 'UPDATE Address SET description = ?, customer_id = ?, city_id = ?, reference = ?, post_code = ?, int_num = ?, out_num = ?, name = ?, last_name = ?, phone = ? WHERE id = ?';
+
+        database.query(sql,[address.description, address.customer_id, address.city_id, address.reference, address.post_code, address.int_num, address.out_num, address.name, address.last_name, address.phone, address.id], (err, data) => {
+            if(err) throw err;
+            return callback(data);
+        })
+    },
+
+
+    deletAddress:(id, callback) => {
+        let sql = 'DELETE FROM Address WHERE id = ?';
+        
+        database.query(sql,id, (err, data) => {
+            if(err) throw err;
+            return callback(data);
+        });
+    }
 
 }
