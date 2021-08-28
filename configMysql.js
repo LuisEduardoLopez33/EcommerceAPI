@@ -1,7 +1,7 @@
 const mysql = require('mysql')
 const config = {
     host: 'localhost',
-    port: '3307',
+    port: '3306',
     user: 'user.bd',
     database: 'ecommerce',
     password: '12345'
