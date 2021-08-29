@@ -13,5 +13,8 @@ router.post('/update');
 
 router.post('/addCart', cart.addCart);
 router.get('/getCartByCusID/:customerID', cart.GetCartByCusID);
+router.delete('/delByCartID/:cartID', cart.delByCartID);
+router.delete('/delByCustomerID/:customerID', cart.delByCustomerID);
+router.put('/updCartByCartID/:id', cart.updCartByCartID);
 
 module.exports = router;
