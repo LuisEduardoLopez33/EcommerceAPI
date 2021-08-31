@@ -1,10 +1,10 @@
-const userDAO = require('../models/usersDao');
+const customerDao = require('../models/customerDao');
 const bcrypt = require('bcrypt');
 const token = require('../models/createToken');
 const {compareSync} = require("bcrypt");
 
-const validateUser = (req, res) =>{
-    userDAO.searchUser(req.param.nameUser, (data) =>{
+const validateCustomer = (req, res) =>{
+    customerDao.searchCustomer(req.params.mail, (data) =>{
         try {
             if (!data) throw new Err('Este Usuario ya Existe')
             res.send({
@@ -22,7 +22,7 @@ const validateUser = (req, res) =>{
 }
 
 const singUp = (req, res) =>{
-    const user = {
+    const customer = {
         name: req.body.name,
         last_name: req.body.lastname,
         password: bcrypt.hashSync(req.body.password, 10),
@@ -31,7 +31,7 @@ const singUp = (req, res) =>{
         date_of_bd: req.body.date_of_bd
     }
 
-    userDAO.insertUser(user, (data) =>{
+    customerDao.insertCustomer(customer, (data) =>{
         res.send({
             status: true,
             message: 'Cuenta Creada Exitosamente'
@@ -47,7 +47,7 @@ const singUp = (req, res) =>{
 
 const logIn = (req, res) =>{
     let mail = req.body.mail
-    userDAO.searchUser(mail, (data) =>{
+    customerDao.searchCustomer(mail, (data) =>{
         let password = bcrypt.compareSync(req.body.password, data.password, 10)
         if (data){
             if (password){
@@ -77,7 +77,7 @@ const logIn = (req, res) =>{
 
 
 module.exports = {
-    validateUser,
+    validateCustomer,
     singUp,
     logIn
 }
