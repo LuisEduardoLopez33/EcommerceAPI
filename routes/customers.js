@@ -7,6 +7,7 @@ router.get('/', function (req, res){
 })
 router.get('/validateCustomer/:mail', customer.validateCustomer);
 router.post('/singUp', customer.singUp);
-router.post('/logIn', customer.logIn)
+router.post('/logIn', customer.logIn);
+router.get('/getCustomers', customer.getAllCust);
 
 module.exports = router;

@@ -72,6 +72,24 @@ const logIn = (req, res) =>{
     return token;
 }
 
+const getAllCust = (req, res) => {
+    customerDao.getAllCustomers( (data) => {
+        if(data != null) {
+            res.send({
+                status: true,
+                data: data,
+                message: 'informacion de clientes obtenida'
+            });
+        }else{
+            res.send({
+                status: false,
+                message: 'No se encontró informacion de clientes'
+            });
+        }
+    })
+}
+
+
 
 
 
@@ -79,5 +97,6 @@ const logIn = (req, res) =>{
 module.exports = {
     validateCustomer,
     singUp,
-    logIn
+    logIn,
+    getAllCust
 }

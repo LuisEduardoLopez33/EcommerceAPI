@@ -17,12 +17,26 @@ module.exports = {
     insertCustomer: (customer, okCallback, failCallback) =>{
         let sql = 'INSERT INTO customer SET ?';
 
-        database.query(sql, user, (err, data) =>{
+        database.query(sql, customer, (err, data) =>{
             if (err){
                 return failCallback(err);
             }else{
                 return okCallback(data);
             }
         })
-    }
+    },
+
+    /*RECUPERAR LA INFORMACION DE TODOS LOS CLIENTES*/
+    getAllCustomers: (callback) => {
+        let sql = 'SELECT * FROM Customer'
+        database.query(sql, (err, data) => {
+            if(err) throw err;
+            if(data != null){
+                callback(data);
+            }else{
+                callback(null);
+            }
+        })
+    },
+
 }
