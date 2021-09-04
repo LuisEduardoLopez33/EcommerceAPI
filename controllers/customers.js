@@ -1,8 +1,7 @@
 const customerDao = require('../models/customerDao');
 const bcrypt = require('bcrypt');
 const token = require('../models/createToken');
-const {compareSync} = require("bcrypt");
-
+const jwt = require('../utils/GenerateJWT')
 const validateCustomer = (req, res) =>{
     customerDao.searchCustomer(req.params.mail, (data) =>{
         try {
@@ -24,7 +23,7 @@ const validateCustomer = (req, res) =>{
 const singUp = (req, res) =>{
     const customer = {
         name: req.body.name,
-        last_name: req.body.lastname,
+        last_name: req.body.last_name,
         password: bcrypt.hashSync(req.body.password, 10),
         phone: req.body.phone,
         mail: req.body.mail,
@@ -47,29 +46,30 @@ const singUp = (req, res) =>{
 
 const logIn = (req, res) =>{
     let mail = req.body.mail
-    customerDao.searchCustomer(mail, (data) =>{
-        let password = bcrypt.compareSync(req.body.password, data.password, 10)
-        if (data){
-            if (password){
+    let password = req.body.password
+        customerDao.searchCustomer(mail, (data) =>{
+        if (data) {
+            if (bcrypt.compareSync(password, data.password)){
                 res.send({
                     status: true,
-                    message: 'contraseña Correcta'
+                    message: 'los parametros son correctos',
+                    token: jwt.generateToken(data),
+                    name: data.name,
+                    last_name: data.last_name
                 })
-            }else {
+            } else {
                 res.send({
                     status: false,
-                    message: 'Contraseña Incorrecta'
+                    message: 'Contraseña incorrecta'
                 })
             }
-        }else {
+        } else {
             res.send({
                 status: false,
-                message: 'La cuenta no Existe'
+                message: 'La cuenta de usuario no existe'
             })
         }
     })
-
-    return token;
 }
 
 const getAllCust = (req, res) => {
