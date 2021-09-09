@@ -14,7 +14,8 @@ var indexRouter = require('./routes/index');
 var categoryRouter = require('./routes/category');
 var brandRouter = require('./routes/brand');
 var addressRouter = require('./routes/address');
-var productRev = require('./routes/productReview')
+var productRev = require('./routes/productReview');
+var imageRouter = require('./routes/image');
 
 var app = express();
 
@@ -40,6 +41,7 @@ app.use('/category', categoryRouter);
 app.use('/brand', brandRouter);
 app.use('/address', addressRouter);
 app.use('/productReview', productRev);
+app.use('/image', imageRouter);
 
 //
 app.use(function(req, res, next) {

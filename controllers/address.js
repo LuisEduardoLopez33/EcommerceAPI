@@ -11,7 +11,7 @@ const getAllAddresses = (req, res) => {
         }else{
             res.send({
                 status: false,
-                message: 'Address empty'
+                message: 'Address is empty'
             });
         }
     })
