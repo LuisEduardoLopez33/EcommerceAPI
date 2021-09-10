@@ -58,6 +58,24 @@ module.exports = {
             if(err) throw err;
             return callback(data);
         });
-    }
+    },
 
+
+
+    getJoinStateWithCity:(state, callback) => {
+
+        let sql = 'SELECT state.id AS id_State, city.id AS id_City, city.name AS name_City FROM state JOIN city ON state.name = ?';
+
+        database.query(sql,[state.name], (err, data) => {
+            console.log(sql)
+            if(err) throw err;
+
+            if(data != null){
+                return callback(data);
+            }else{
+                return callback(null);
+            }
+
+        })
+    }
 }

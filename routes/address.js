@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const address = require('../controllers/address');
-
+/*
 const jwt = require("jsonwebtoken");
 const configuration = require('../ConfigServer')
 
@@ -28,6 +28,7 @@ router.use('/',function(req, res, next) {
         }
     });
 });
+*/
 
 router.get('/', (req, res) => {
     res.send('ADDRESS!!!')
@@ -38,5 +39,6 @@ router.get('/getAddressPerCustomerById/:idCustomer', address.consultAddressPerCu
 router.post('/insertAddress', address.addNewAddress);
 router.put('/updateAddress/:idAddress', address.updateAddress);
 router.delete('/deleteAddress/:idAddress', address.deleteAddress);
+router.get('/getJoinStateCity/:name', address.joinStateWithCity)
 
 module.exports = router;

@@ -107,11 +107,38 @@ const deleteAddress = (req, res) => {
     })
 }
 
+const joinStateWithCity = (req, res) =>{
+    /*addressDAO.getJoinStateWithCity((err, data)=>{
+        if(err){
+            res.status(500).send('Error server');
+        }else{
+            res.send('Datos Obtenidos: ' +  data);
+        }
+    }
+    )*/
+    //let state = {
+    //    name: req.params.name
+    //}
+    addressDAO.getJoinStateWithCity({name:req.params.name}, (data)=>{
+        if(data != null){
+            res.send({
+                status: true,
+                data: data
+            });
+        }else{
+            //res.status(500).send('Server Error');
+            res.send('Server Error');
+
+        }
+    })
+}
+
 
 module.exports = {
     getAllAddresses,
     consultAddressPerCustomer,
     addNewAddress,
     updateAddress,
-    deleteAddress
+    deleteAddress,
+    joinStateWithCity
 }
