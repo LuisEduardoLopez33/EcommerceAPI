@@ -15,6 +15,7 @@ const addProduct = (req, res) =>{
 
     productDao.addProduct(product, (data) =>{
         res.send({
+            id: data.insertId,
             status: true,
             message: 'El producto se agrego correctamente'
         })

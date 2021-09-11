@@ -55,7 +55,8 @@ const logIn = (req, res) =>{
                     message: 'los parametros son correctos',
                     token: jwt.generateToken(data),
                     name: data.name,
-                    last_name: data.last_name
+                    last_name: data.last_name,
+                    id: data.id
                 })
             } else {
                 res.send({
