@@ -29,5 +29,16 @@ module.exports = {
             else
                 callback(null)
         })
+    },
+
+    getCartOrder: (customer_id, callback)=>{
+        let sql = 'SELECT * FROM ecommerce.order WHERE customer_id = ? AND ecommerce.order.status = \'prevorder\''
+        database.query(sql, customer_id, (err,data) => {
+            if(err) throw err
+            if(data !=null)
+                callback(data)
+            else
+                callback(null)
+        })
     }
 }

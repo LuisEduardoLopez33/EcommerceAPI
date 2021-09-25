@@ -64,7 +64,7 @@ module.exports = {
 
     getJoinStateWithCity:(state, callback) => {
 
-        let sql = 'SELECT state.id AS id_State, city.id AS id_City, city.name AS name_City FROM state JOIN city ON state.name = ?';
+        let sql = 'SELECT state.id AS id_State, city.id AS id_City, city.name AS name_City FROM state JOIN city ON state.name = ? AND state.id = city.state_id';
 
         database.query(sql,[state.name], (err, data) => {
             console.log(sql)

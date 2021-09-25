@@ -29,8 +29,11 @@ router.use('/',function(req, res, next) {
     });
 });
 
-router.get('/', function (req, res){
-    res.send('Estas entrando en la Parte de Orders')
+router.post('/holi', function (req, res){
+    res.send({
+        ok: true,
+        message:'isok'
+    })
 })
 router.post('/add');
 router.post('/update');
@@ -39,6 +42,7 @@ router.post('/delete');
 
 router.post('/addOrder', order.addOrder);
 router.get('/getOrderByCusID/:customerID', order.getOrderByCusID);
+router.get('/getCartPastToOrder/:customerID' , order.getCartPasToOrder);
 
 
 module.exports = router;

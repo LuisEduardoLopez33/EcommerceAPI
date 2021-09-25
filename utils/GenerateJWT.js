@@ -5,7 +5,7 @@ const generateToken = (customer) => {
         id: customer.id,
         name: customer.name
     }
-    return  jwt.sign(userToken,configurationServer.jwt.secret,{expiresIn: 60 * 60},)
+    return  jwt.sign(userToken,configurationServer.jwt.secret,{expiresIn: 60 * 60 * 24 * 30},)
 
 }
 module.exports = {

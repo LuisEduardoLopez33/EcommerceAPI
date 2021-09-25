@@ -38,7 +38,24 @@ const getOrderByCusID = (req, res) => {
     })
 }
 
+const getCartPasToOrder = (req, res) => {
+   orderDAO.getCartOrder(req.params.customerID, (data) =>{
+       if (data != null) {
+           res.send({
+               status: true,
+               data: data
+           })
+       }else {
+           res.send({
+               status: false,
+               message: 'data not find'
+           })
+       }
+   })
+}
+
 module.exports = {
     addOrder,
-    getOrderByCusID
+    getOrderByCusID,
+    getCartPasToOrder
 }
