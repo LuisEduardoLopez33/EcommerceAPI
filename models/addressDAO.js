@@ -18,7 +18,7 @@ module.exports = {
 
     /*OBTENER TODAS LAS DIRECCIONES QUE HA REGISTRADO CADA CLIENTE*/
     getAddressPerCustomerById: (id, callback) => {
-        let sql = 'SELECT Address.id, Address.description, Address.customer_id, Customer.name, Address.city_id, Address.reference, Address.post_code, City.id, City.name, State.id, State.name FROM Customer LEFT JOIN Address ON Customer.id = Address.customer_id LEFT JOIN City ON Address.city_id = City.id LEFT JOIN State ON City.state_id = State.id WHERE Customer.id = ?';
+        let sql = 'SELECT Address.id AS id_ad, Address.description, Address.customer_id, Customer.name, Address.city_id, Address.reference, Address.post_code, City.id, City.name, State.id, State.name FROM Customer LEFT JOIN Address ON Customer.id = Address.customer_id LEFT JOIN City ON Address.city_id = City.id LEFT JOIN State ON City.state_id = State.id WHERE Customer.id = ?';
 
         database.query(sql, id, (err, data) => {
             

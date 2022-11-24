@@ -2,21 +2,22 @@ const customerDao = require('../models/customerDao');
 const bcrypt = require('bcrypt');
 const token = require('../models/createToken');
 const jwt = require('../utils/GenerateJWT')
+
 const validateCustomer = (req, res) =>{
     customerDao.searchCustomer(req.params.mail, (data) =>{
-        try {
-            if (!data) throw new Err('Este Usuario ya Existe')
-            res.send({
-                status: true,
-                message: 'Aceptable'
-            })
-        }catch (Err) {
-            res.send({
+        
+            if (data != null) {
+                res.send({
                 status: false,
-                message: 'Este Usuario ya Existe'
+                message: 'Este usuario ya existe'
             })
-
-        }
+            } else {
+                res.send({
+                    status: true,
+                    message: 'usuario disponible'
+                })
+            }
+            
     })
 }
 
